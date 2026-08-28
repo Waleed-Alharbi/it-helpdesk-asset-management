@@ -1,0 +1,11 @@
+﻿import { useState } from 'react'
+import { Bell, Boxes, ChartNoAxesCombined, ChevronDown, CircleHelp, LayoutDashboard, Menu, MonitorCog, Search, Settings, Ticket, Users, X } from 'lucide-react'
+import { initials } from '../utils'
+const navigation = [["Dashboard", LayoutDashboard], ["Tickets", Ticket], ["Assets", Boxes], ["Users", Users], ["Reports", ChartNoAxesCombined], ["Settings", Settings]]
+export default function Layout({ children, page, setPage, notice, setNotice }) {
+  const [open, setOpen] = useState(false)
+  const choose = item => { setPage(item); setOpen(false) }
+  return <div className="app-shell"><aside className={`sidebar ${open ? 'open' : ''}`}><div className="brand"><div className="brand-mark"><MonitorCog size={22}/></div><span>Service<span>Desk</span></span><button className="mobile-close" onClick={() => setOpen(false)}><X size={20}/></button></div><div className="workspace">WORKSPACE</div><nav>{navigation.map(([label, Icon]) => <button key={label} className={page === label ? 'nav-item active' : 'nav-item'} onClick={() => choose(label)}><Icon size={19}/><span>{label}</span>{label === 'Tickets' && <em>8</em>}</button>)}</nav><div className="sidebar-footer"><div className="upgrade"><CircleHelp size={18}/><div><strong>Need a hand?</strong><span>View IT playbook</span></div></div><div className="team-card"><div className="avatar avatar-blue">IT</div><div><strong>IT Operations</strong><span>Demo environment</span></div><ChevronDown size={16}/></div></div></aside>{open && <div className="scrim" onClick={() => setOpen(false)}/>}<main><header className="topbar"><button className="menu-button" onClick={() => setOpen(true)}><Menu size={22}/></button><div className="global-search"><Search size={18}/><input placeholder="Search tickets, assets, users..." /></div><div className="top-actions"><button className="icon-button"><Bell size={20}/><i/></button><div className="profile"><div className="avatar avatar-violet">{initials('Waleed Alharbi')}</div><div className="profile-copy"><strong>Waleed Alharbi</strong><span>IT Administrator · <b lang="ar" dir="rtl">وليد الحربي</b></span></div><ChevronDown size={16}/></div></div></header><section className="content">{notice && <div className="toast">{notice}<button onClick={() => setNotice('')}>×</button></div>}{children}</section></main></div>
+}
+
+
