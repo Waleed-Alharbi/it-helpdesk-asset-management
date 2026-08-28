@@ -267,7 +267,5 @@ This project exists to demonstrate how IT Support, IT Operations, systems thinki
 
 ## Author
 
-**Waleed Alharbi**  
-Information Technology Graduate  
-Saudi Arabia  
+**Waleed Alharbi**   
 GitHub: [Waleed-Alharbi](https://github.com/Waleed-Alharbi)
